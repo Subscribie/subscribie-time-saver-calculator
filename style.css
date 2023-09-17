@@ -301,19 +301,6 @@ h2 {
     -webkit-animation: fadeIn ease 0.8s;
 }
 
-#monthlyCharge {
-    width: 100%;
-    height: 60px;
-    padding: 1rem;
-    text-align: center;
-    font-size: 32px;
-    color: #4842e3;
-    border: 1px solid lightgrey;
-    outline: none;
-    animation: fadeIn ease 0.8s;
-    -webkit-animation: fadeIn ease 0.8s;
-}
-
 .total-result {
     animation: color-change 2s linear infinite;
     border: 2px solid #4842e3;
