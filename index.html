@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="./bs-grid.css" rel="stylesheet" type="text/css">
+    <link href="./style.css" rel="stylesheet" type="text/css">
+    <style>
+    .input-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+    <title>Time Saved Calculator</title>
+</head>
+<body>
+
+<div class="row">
+    <div class="col-sm-12 app-title text-center d-flex justify-content-center align-items-center">
+        <h1>Work out the time &amp; money you could save by automating payment collection.</h1>
+    </div>
+    <div class="col-sm-12 d-flex justify-content-center">
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center p-2">
+        <span class="input-label">Number of people you collect payments for:</span>
+    </div>
+    <div class="col-sm-12">
+        <div class="input-wrapper">
+            <label for="timeSaved">
+                <input id="timeSaved" inputmode="numeric" type="number" name="timeSaved" value="5"/>
+            </label>
+        </div>
+    </div>
+</div>
+
+
+<div class="row calculator-body">
+    <div class="col-sm-12 my-2">
+
+        <div class="row">
+            <div class="col-sm-12 text-center w-100">
+            </div>
+
+            <div class="col-sm-12 text-center d-flex justify-content-center align-items-center">
+                <span id="numSubscribersShow"></span>
+            </div>
+
+            <div class="col-sm-12 p-2">
+                <div class="input-wrapper">
+                    <label class="pure-material-slider w-100" for="numSubscribers">
+                        <input id="numSubscribers" max="1000" name="numSubscribers" type="range" value="5">
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-12 p-2">
+              <h2>Use Subscribie to automate the faff of payment collection:</h2>
+              <ul>
+                <li>Less time back &amp; forth sorting our payments</li>
+                <li>Less time checking "have they paid?"</li>
+                <li>Less time chasing payments thanks to automatic payment reties</li>
+                <li>Less time handling money</li>
+            </div>
+        </div>
+
+        
+
+
+    </div>
+</div>
+
+<script>
+
+
+    (() => {
+        // Check if already set in url params
+        let params = (new URL(document.location)).searchParams;
+        if (params.get('subscribers')) {
+          document.getElementById('numSubscribers').value = params.get('subscribers');
+        }
+        if (params.get('timeSaved')) {
+          document.getElementById('timeSaved').value = params.get('timeSaved');
+        }
+
+        document.getElementById('numSubscribersShow').textContent = "Want " + document.getElementById('numSubscribers').value + " hours of your time back?";
+    })();
+
+    // update number of people when slider changed
+  document.getElementById('numSubscribers').addEventListener('input', function (e) {
+      document.getElementById('numSubscribersShow').textContent = e.target.value;
+      document.getElementById('numSubscribers').textContent = e.target.value;
+      
+      // Set the value of 'timeSaved' to the value of 'numSubscribers'
+      document.getElementById('timeSaved').value = e.target.value;
+  });
+
+
+    // update number of people when slider changed
+document.getElementById('numSubscribers').addEventListener('input', function (e) {
+        document.getElementById('numSubscribers').textContent = e.target.value;
+        showit(e.target.value); 
+  });
+
+function showit(amount) {
+        document.getElementById('numSubscribersShow').textContent = "Save over " + amount + " hours a month 🤯";
+        if (amount > 730 ) {
+           document.getElementById('numSubscribersShow').textContent += "...okay, that's impossible but you get the message 😊 we keep track of payments, so you don't have to!"
+          } else if ( amount > 15 ) {
+            document.getElementById('numSubscribersShow').textContent = "Save over " + amount + " hours a month 🤯🤯";   
+          } else if ( amount == 0 ) {
+            document.getElementById('numSubscribersShow').textContent = "Save " + amount + " hours a month 😲";   
+          }
+
+}
+
+document.getElementById('timeSaved').addEventListener('input', function (e) {
+        showit(e.target.value);
+  });
+
+
+    // update number of people when slider changed
+    document.getElementById('numSubscribers').addEventListener('input', function (e) {
+            
+            // Set the value of 'timeSaved' to the value of 'numSubscribers'
+            document.getElementById('timeSaved').value = e.target.value;
+      });
+
+
+</script>
+</body>
+</html>
